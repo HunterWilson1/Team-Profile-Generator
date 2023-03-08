@@ -1,7 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const markdownHTML = require("./src/HTML");
-const classes = require("./lib")
+const engineer = require("./lib/Engineer");
+const intern = require("./lib/Intern");
+const manager = require("./lib/Manager");
 
 function makeTeam() {
   const team = [];
@@ -73,10 +75,36 @@ function makeTeam() {
     },
   ];
 
-  
+  inquirer.prompt(manager.then((data) => {
+    const newManager = new manager(
+        data.name,
+        data.id,
+        data.email,
+        data.officeNumber
+    );
+    team.push(newManager);
+        addTeamMember();
+  }));
+
+  function addTeamMember() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "What team member would you like to add?",
+            name: "memberType",
+            choices: [
+                "Engineer",
+                "Intern",
+                "I do not want to add anymore."
+            ]
+        }
+    ])
+  }
+
+
 }
 
 
 
 
-writeHTML();
+
