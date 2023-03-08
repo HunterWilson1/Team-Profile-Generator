@@ -77,17 +77,24 @@ function makeTeam() {
 
   inquirer.prompt(
     manager).then((data) => {
+
+    // new manager object
       const newManager = new Manager(
         data.name,
         data.id,
         data.email,
         data.officeNumber
       );
+
+      //adds to team array
       team.push(newManager);
+
+      //brings up employee questions
       addTeamMember();
     });
 
   function addTeamMember() {
+    //prompt to add more employee
     inquirer
       .prompt([
         {
@@ -109,6 +116,8 @@ function makeTeam() {
             team.push(newEngineer);
             addTeamMember();
           });
+          
+          //if select intern creates new object
         } else if (data.memberType === "Intern") {
           inquirer.prompt(intern).then((data) => {
             const newIntern = new Intern(

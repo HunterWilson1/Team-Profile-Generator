@@ -1,5 +1,7 @@
+
 const createTeam = team => {
 
+    //makes the manager card
     const managerCard = manager => {
         return `
         <div class="card-header bg-primary text-white">
@@ -7,18 +9,30 @@ const createTeam = team => {
         </div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item">ID: ${manager.getid()}</li>
-                <li class="list-group-item">Email: <a href="mailto:${manager.getemail()}">${manager.getemail()}</li>
-                <li class="list-group-item">Office Number: ${manager.getofficenumber()}</li>
+                <li class="list-group-item">ID: ${manager.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</li>
+                <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
             </ul>
         </div>
     
         `
     }
+
+//createTeam makes an empty array
+const html = [];
+
+//pushes to html array when it filters out those with role of manager
+//map is called on filtered manager array which generates html strings by the managerCard
+html.push(team
+    .filter(employee =>employee.getRole() === "Manager")
+    .map(manager => managerCard(manager))
+    );
+
+    //html array is joined into string and returned to createTeam function.
+    return html.join("");
 }
 
-
-
+// exports html template as a string with team as argument
 module.exports = team => {
     return `
     <!DOCTYPE html>
@@ -33,7 +47,7 @@ module.exports = team => {
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class=col-12 mb-3 bg-danger">
+                <div class="col-12 mb-3 bg-danger">
                     <h1 class="text-center text-white"> My Team </h1>
                 </div>
             </div>
