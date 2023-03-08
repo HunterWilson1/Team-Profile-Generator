@@ -1,3 +1,5 @@
+function createTeam() {
+
 `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +20,11 @@
     <div class ="container">
         <div class="row">
             <div class ="row col-12 justify-content-center">
+            ${createTeam(team)}
         </div>
     </div>
 </body>
 </html>
 `
+}
+module.exports = markdownHTML;

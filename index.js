@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const markdownHTML = require("./src/HTML");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
-const manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
 
 function makeTeam() {
   const team = [];
@@ -75,36 +75,68 @@ function makeTeam() {
     },
   ];
 
-  inquirer.prompt(manager.then((data) => {
-    const newManager = new manager(
+  inquirer.prompt(
+    manager).then((data) => {
+      const newManager = new Manager(
         data.name,
         data.id,
         data.email,
         data.officeNumber
-    );
-    team.push(newManager);
-        addTeamMember();
-  }));
+      );
+      team.push(newManager);
+      addTeamMember();
+    });
 
   function addTeamMember() {
-    inquirer.prompt([
+    inquirer
+      .prompt([
         {
-            type: "list",
-            message: "What team member would you like to add?",
-            name: "memberType",
-            choices: [
-                "Engineer",
-                "Intern",
-                "I do not want to add anymore."
-            ]
+          type: "list",
+          message: "What team member would you like to add?",
+          name: "memberType",
+          choices: ["Engineer", "Intern", "I do not want to add anymore."],
+        },
+      ])
+      .then((data) => {
+        if (data.memberType === "Engineer") {
+          inquirer.prompt(engineer).then((data) => {
+            const newEngineer = new Engineer(
+              data.name,
+              data.id,
+              data.email,
+              data.github
+            );
+            team.push(newEngineer);
+            addTeamMember();
+          });
+        } else if (data.memberType === "Intern") {
+          inquirer.prompt(intern).then((data) => {
+            const newIntern = new Intern(
+              data.name,
+              data.id,
+              data.email,
+              data.school
+            );
+            team.push(newIntern);
+            addTeamMember();
+          });
+        } else {
+          const HTML = markdownHTML(team);
+          writeToFile("index.html", HTML);
         }
-    ])
+      });
   }
+}
 
-
+function writeToFile(fileName, team) {
+  fs.writeFile(fileName, team, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("File has been generated successfully!");
+    }
+  });
 }
 
 
-
-
-
+makeTeam();
