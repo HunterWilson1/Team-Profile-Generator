@@ -1,30 +1,50 @@
-function createTeam() {
+const createTeam = team => {
 
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <title>Team Creator</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class=col-12 mb-3 bg-danger">
-                <h1 class="text-center text-white"> My Team </h1>
+    const managerCard = manager => {
+        return `
+        <div class="card-header bg-primary text-white">
+            <h2 class="card-title">${manager.getName()}</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${manager.getid()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.getemail()}">${manager.getemail()}</li>
+                <li class="list-group-item">Office Number: ${manager.getofficenumber()}</li>
+            </ul>
+        </div>
+    
+        `
+    }
+}
+
+
+
+module.exports = team => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        <title>Team Creator</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class=col-12 mb-3 bg-danger">
+                    <h1 class="text-center text-white"> My Team </h1>
+                </div>
             </div>
         </div>
-    </div>
-    <div class ="container">
-        <div class="row">
-            <div class ="row col-12 justify-content-center">
-            ${createTeam(team)}
+        <div class ="container">
+            <div class="row">
+                <div class ="row col-12 justify-content-center">
+                ${createTeam(team)}
+            </div>
         </div>
-    </div>
-</body>
-</html>
-`
+    </body>
+    </html>
+    `
 }
-module.exports = markdownHTML;
