@@ -1,0 +1,9 @@
+.card-body {
+    background-color: rgb(238, 233, 233);
+}
+
+.card {
+    width: 20rem;
+    border: none;
+    margin: 1rem;
+}
