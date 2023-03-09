@@ -138,7 +138,8 @@ function makeTeam() {
 }
 
 function writeToFile(fileName, team) {
-  fs.writeFile(fileName, team, (err) => {
+  const filepath = `./dist/${fileName}`
+  fs.writeFile(filepath, team, (err) => {
     if (err) {
       console.log(err);
     } else {
