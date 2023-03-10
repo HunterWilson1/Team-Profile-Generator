@@ -5,6 +5,7 @@ const createTeam = (team) => {
     <div class="card">   
         <div class="card-header bg-primary text-white">
             <h2 class="card-title">${manager.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-mug-hot"></i>${manager.getRole()}</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
@@ -22,6 +23,7 @@ const createTeam = (team) => {
     <div class="card">     
         <div class="card-header bg-primary text-white">
             <h2 class="card-title">${engineer.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-gear"></i>${engineer.getRole()}</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
@@ -39,6 +41,7 @@ const createTeam = (team) => {
     <div class="card">   
         <div class="card-header bg-primary text-white">
             <h2 class="card-title">${intern.getName()}</h2>
+            <h3 class="card-title"><i class="fa-solid fa-user-graduate"></i>${intern.getRole()}</h3>
         </div>
         <div class="card-body">
             <ul class="list-group">
@@ -87,7 +90,8 @@ module.exports = (team) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="dist/style.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/4444fe08f6.js" crossorigin="anonymous"></script>
         <title>Team Creator</title>
     </head>
     <body>
